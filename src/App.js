@@ -5,6 +5,7 @@ import MainHeader from "./components/MainHeder/MainHeader.styled";
 import ContactsList from "./components/ContactsList/ContactsList";
 import Form from "./components/Form/Form";
 import shortid, { generate } from "shortid";
+import SearchField from "./components/SearchField/SearchField";
 
 class App extends Component {
   state = {
@@ -14,6 +15,7 @@ class App extends Component {
       { id: "id-3", name: "Eden Clements", number: "645-17-79" },
       { id: "id-4", name: "Annie Copeland", number: "227-91-26" },
     ],
+    filter: "",
   };
   deleteContact = (contactId) => {
     this.setState((prevState) => ({
@@ -23,7 +25,6 @@ class App extends Component {
     }));
   };
   formSubmitHandler = (data) => {
-    console.log(data);
     const contactId = shortid.generate();
     this.setState({
       contacts: this.state.contacts.concat({
@@ -33,16 +34,26 @@ class App extends Component {
       }),
     });
   };
+  onContactSearch = (event) => {
+    this.setState({
+      filter: event.currentTarget.value,
+    });
+  };
 
   render() {
-    const { contacts } = this.state;
+    const { contacts, filter } = this.state;
+    const normalizedFilter = filter.toLowerCase();
+    const filteredContacts = contacts.filter((contact) =>
+      contact.name.toLowerCase().includes(normalizedFilter)
+    );
     return (
       <Wrapper>
         <MainHeader />
         <Form onSubmitProp={this.formSubmitHandler} />
         <h2>Contacts</h2>
+        <SearchField value={filter} onChange={this.onContactSearch} />
         <ContactsList
-          contacts={contacts}
+          contacts={filteredContacts}
           onDeleteContact={this.deleteContact}
         />
       </Wrapper>

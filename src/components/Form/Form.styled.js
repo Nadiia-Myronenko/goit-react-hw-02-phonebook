@@ -15,8 +15,11 @@ export const ContactsForm = styled.form`
 export const InputField = styled.input`
   border: 2px solid #32cd32;
   border-radius: 4px;
-  margin-left: 10px;
   width: 50%;
+  height: 25px;
+  display: block;
+  padding-right: 10px;
+  padding-left: 10px;
 `;
 
 export const Button = styled.button`

@@ -10,7 +10,7 @@ class Form extends Component {
     this.setState({ [event.currentTarget.name]: event.currentTarget.value });
   };
   reset = () => {
-    this.setState({ name: "" });
+    this.setState({ name: "", tel: "" });
   };
   handleSubmit = (event) => {
     event.preventDefault();
@@ -22,7 +22,6 @@ class Form extends Component {
     return (
       <ContactsForm onSubmit={this.handleSubmit}>
         <label>
-          {" "}
           Name
           <InputField
             type="text"
@@ -35,7 +34,6 @@ class Form extends Component {
           />
         </label>
         <label>
-          {" "}
           Phone
           <InputField
             type="tel"
