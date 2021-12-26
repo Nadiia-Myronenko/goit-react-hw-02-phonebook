@@ -10,12 +10,12 @@ class Form extends Component {
     this.setState({ [event.currentTarget.name]: event.currentTarget.value });
   };
   reset = () => {
-    this.setState({ name: "", tel: "" });
+    this.setState({ name: "", number: "" });
   };
   handleSubmit = (event) => {
     event.preventDefault();
     this.props.onSubmitProp(this.state);
-    this.reset();
+    event.currentTarget.reset();
   };
 
   render() {

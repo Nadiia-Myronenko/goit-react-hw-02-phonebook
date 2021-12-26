@@ -26,7 +26,6 @@ class App extends Component {
   };
   formSubmitHandler = (data) => {
     const contactId = shortid.generate();
-    console.log(data.name);
     let includesName = false;
     for (const contact of this.state.contacts) {
       if (data.name === contact.name) {
