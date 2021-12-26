@@ -26,13 +26,24 @@ class App extends Component {
   };
   formSubmitHandler = (data) => {
     const contactId = shortid.generate();
-    this.setState({
-      contacts: this.state.contacts.concat({
-        id: contactId,
-        name: data.name,
-        number: data.number,
-      }),
-    });
+    console.log(data.name);
+    let includesName = false;
+    for (const contact of this.state.contacts) {
+      if (data.name === contact.name) {
+        includesName = true;
+      }
+    }
+    if (!includesName) {
+      this.setState({
+        contacts: this.state.contacts.concat({
+          id: contactId,
+          name: data.name,
+          number: data.number,
+        }),
+      });
+    } else {
+      alert(`${data.name} is already in contacts!!!`);
+    }
   };
   onContactSearch = (event) => {
     this.setState({
