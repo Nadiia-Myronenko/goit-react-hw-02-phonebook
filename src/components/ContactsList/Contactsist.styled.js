@@ -10,6 +10,7 @@ export const List = styled.ul`
   margin-top: 0;
   margin-bottom: 0;
   border-radius: 4px;
+  min-height: 100px;
 `;
 
 export const ListItem = styled.li`
